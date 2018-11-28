@@ -1,6 +1,7 @@
 class Api {
 
     static loginUser = (email, password) => {
+        console.log(email, password);
         return fetch('http://localhost:8086/public/login', {
             method: 'POST',
             credentials: 'include',

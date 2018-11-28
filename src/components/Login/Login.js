@@ -6,6 +6,11 @@ import './Login.scss'
 
 class Login extends Component {
 
+    constructor(props){
+        super(props);
+        console.log(this.props.userName);
+    }
+
     submitForm = (ev) => {
         const { email, password } = this.props;
         ev.preventDefault();
@@ -28,9 +33,15 @@ class Login extends Component {
         this.props.addPass(value);
     };
 
+    static getDerivedStateFromProps(nextProps, prevState){
+        console.log(nextProps, prevState);
+    // else return null;
+    }
+
     render() {
         const {email, pass} = this.props;
         const {setName, setPass, submitForm} = this;
+        console.log(this.props);
         return (
             <div className="login">
                 <form className="login-form" onSubmit={(ev) => submitForm(ev)}>
@@ -64,7 +75,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         email: state.login.email,
-        pass: state.login.pass
+        pass: state.login.pass,
+        username: state.user
     }
 };
 
