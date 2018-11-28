@@ -12,6 +12,9 @@ function* fetchUser() {
 
 function* loginSaga() {
     yield takeEvery("SUBMIT_LOGIN", fetchUser());
+
+
+
 }
 
 export default loginSaga;
