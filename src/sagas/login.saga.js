@@ -6,7 +6,7 @@ function* fetchUser() {
     try {
         const data = yield select(getDataFromState);
         const user = yield call(Api.loginUser, data.email, data.pass);
-        yield put({type: "SET_USER_INFO", user});
+        yield put({type: "SET_USER_INFO", payload: user});
     } catch (e) {
         yield put({type: "LOGIN_FAILED", message: e.message});
     }

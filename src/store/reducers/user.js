@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
         case SET_USER_INFO: {
             return {
                 ...state,
-                user: action.payload.user
+                user: action.payload
             };
         }
         default:

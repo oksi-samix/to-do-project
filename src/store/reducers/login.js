@@ -1,9 +1,10 @@
 import { ADD_CONFIRM_PASS, ADD_NAME, ADD_PASS, SUBMIT_LOGIN } from "../../constans/login.constans";
 
 const initialState = {
-    email: "admin@a.com",
-    pass: "admin",
+    email: "",
+    pass: "",
     confirmPass: "",
+    isLogin: true
 };
 
 export default function(state = initialState, action) {
