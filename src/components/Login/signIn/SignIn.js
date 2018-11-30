@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import { connect } from "react-redux";
-import {addName, addPass, submitForm} from "../../../actions/login";
+import {addEmail, addPass, submitForm} from "../../../actions/login";
 import '../Login.scss'
 
 
@@ -34,8 +34,8 @@ class SignIn extends Component {
         }, () => this.submitForm())
     };
 
-    setName = (value) => {
-        this.props.addName(value);
+    setEmail = (value) => {
+        this.props.addEmail(value);
     };
 
     setPass = (value) => {
@@ -53,14 +53,14 @@ class SignIn extends Component {
     render() {
         const {email, pass} = this.props;
         const {errors} = this.state;
-        const {setName, setPass, validateData} = this;
+        const {setEmail, setPass, validateData} = this;
         return (
             <div className="login">
                 <form className="login-form" onSubmit={(ev) => validateData(ev)}>
                     <input type="text"
                            value={email}
                            placeholder="enter email"
-                           onChange={(ev) => setName(ev.target.value)}/>
+                           onChange={(ev) => setEmail(ev.target.value)}/>
                     {errors.email ?  <span>Please, enter email</span> : null }
                     <input type="password"
                            value={pass}
@@ -82,7 +82,7 @@ SignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addName: (email) => {dispatch(addName(email))},
+        addEmail: (email) => {dispatch(addEmail(email))},
         addPass: (pass) => {dispatch(addPass(pass))},
         submitForm: (email, password) => {dispatch(submitForm(email, password))},
     }

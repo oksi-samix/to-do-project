@@ -12,7 +12,7 @@ class Login extends Component {
         return (
             <>
                 {
-                    this.props.isLogin ?
+                    !this.props.isLogin ?
                         <SignIn/> : <CreateUser/>
                 }
             </>

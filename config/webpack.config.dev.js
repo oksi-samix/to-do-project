@@ -295,24 +295,24 @@ module.exports = {
           // to immediately apply all styles to the DOM.
           // By default we support SASS Modules with the
           // extensions .module.scss or .module.sass
-          {
-            test: sassRegex,
-            exclude: sassModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
-          },
-          // Adds support for CSS Modules, but using SASS
-          // using the extension .module.scss or .module.sass
-          {
-            test: sassModuleRegex,
-            use: getStyleLoaders(
-              {
-                importLoaders: 2,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
-              },
-              'sass-loader'
-            ),
-          },
+          // {
+          //   test: sassRegex,
+          //   exclude: sassModuleRegex,
+          //   use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+          // },
+          // // Adds support for CSS Modules, but using SASS
+          // // using the extension .module.scss or .module.sass
+          // {
+          //   test: sassModuleRegex,
+          //   use: getStyleLoaders(
+          //     {
+          //       importLoaders: 2,
+          //       modules: true,
+          //       getLocalIdent: getCSSModuleLocalIdent,
+          //     },
+          //     'sass-loader'
+          //   ),
+          // },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.

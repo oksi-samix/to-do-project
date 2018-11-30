@@ -4,15 +4,19 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import store from "./store/store";
 
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
+import createBrowserHistory from 'history/createBrowserHistory'
+
 
 import App from "./App";
 import Login from "./components/login";
 import Home from "./components/home";
 
 const rootElement = document.getElementById("root");
+const newHistory = createBrowserHistory();
+
 ReactDOM.render(
-    <Router>
+    <Router history={newHistory}>
         <Provider store={store}>
             <App>
                 <Switch>

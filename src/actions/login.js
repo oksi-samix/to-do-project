@@ -1,9 +1,31 @@
-import { ADD_NAME, ADD_CONFIRM_PASS, ADD_PASS, SUBMIT_LOGIN } from "../constans/login.constans";
+import {
+    ADD_NAME,
+    ADD_CONFIRM_PASS,
+    ADD_PASS,
+    SUBMIT_LOGIN,
+    ADD_EMAIL,
+    ADD_FIRST_NAME,
+    ADD_LAST_NAME, CREATE_USER
+} from "../constans/login.constans";
 
-export const addName = (email) => ({
-    type: ADD_NAME,
+export const addEmail = (email) => ({
+    type: ADD_EMAIL,
     payload: {
         email
+    }
+});
+
+export const addFirstName = (firstName) => ({
+    type: ADD_FIRST_NAME,
+    payload: {
+        firstName
+    }
+});
+
+export const addLastName = (lastName) => ({
+    type: ADD_LAST_NAME,
+    payload: {
+        lastName
     }
 });
 
@@ -21,4 +43,6 @@ export const addConfirmPass = (confirmPass) => ({
     }
 });
 
-export const submitForm = (email, pass) => ({ type: SUBMIT_LOGIN, payload: {email, pass}});
+export const submitForm = () => ({ type: SUBMIT_LOGIN});
+
+export const createUser = () => ({ type: CREATE_USER});
