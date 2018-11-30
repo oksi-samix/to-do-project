@@ -16,9 +16,9 @@ function* signIn() {
 function* createUser() {
     try {
         const data = yield select(getDataFromState);
-        yield call(Api.createUser, data.firstName, data.lastName, data.email, data.password);
+        const newUser = yield call(Api.createUser, data.firstName, data.lastName, data.email, data.password);
         const user = {firstName: data.firstName, lastName: data.lastName, email: data.email, password: data.password};
-        yield put({type: "SET_USER_INFO", payload: user});
+        yield put({type: "SET_USER_INFO", payload: {...user, newUser}});
     } catch (e) {
         yield put({type: "SET_ERRORS",  payload: { msg : e} });
     }

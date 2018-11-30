@@ -1,11 +1,12 @@
 import {
-    ADD_NAME,
     ADD_CONFIRM_PASS,
     ADD_PASS,
     SUBMIT_LOGIN,
     ADD_EMAIL,
     ADD_FIRST_NAME,
-    ADD_LAST_NAME, CREATE_USER
+    ADD_LAST_NAME,
+    CREATE_USER,
+    GO_TO_CREATE_USER
 } from "../constans/login.constans";
 
 export const addEmail = (email) => ({
@@ -46,3 +47,5 @@ export const addConfirmPass = (confirmPass) => ({
 export const submitForm = () => ({ type: SUBMIT_LOGIN});
 
 export const createUser = () => ({ type: CREATE_USER});
+
+export const goToCreateUser = () => ({ type: GO_TO_CREATE_USER});

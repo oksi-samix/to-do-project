@@ -1,4 +1,11 @@
-import { ADD_CONFIRM_PASS, ADD_FIRST_NAME, ADD_LAST_NAME, ADD_PASS, SUBMIT_LOGIN, ADD_EMAIL } from "../../constans/login.constans";
+import {
+    ADD_CONFIRM_PASS,
+    ADD_FIRST_NAME,
+    ADD_LAST_NAME,
+    ADD_PASS,
+    ADD_EMAIL,
+    GO_TO_CREATE_USER
+} from "../../constans/login.constans";
 
 const initialState = {
     email: "",
@@ -10,6 +17,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+
     switch (action.type) {
         case ADD_EMAIL: {
             return {
@@ -39,6 +47,12 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 confirmPass: action.payload.confirmPass
+            };
+        }
+        case GO_TO_CREATE_USER: {
+            return {
+                ...state,
+                isLogin: false
             };
         }
         default:

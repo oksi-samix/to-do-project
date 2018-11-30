@@ -4,19 +4,16 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import store from "./store/store";
 
-import {Router, Route, Switch} from "react-router-dom";
-import createBrowserHistory from 'history/createBrowserHistory'
-
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import App from "./App";
 import Login from "./components/login";
 import Home from "./components/home";
 
 const rootElement = document.getElementById("root");
-const newHistory = createBrowserHistory();
 
 ReactDOM.render(
-    <Router history={newHistory}>
+    <BrowserRouter>
         <Provider store={store}>
             <App>
                 <Switch>
@@ -26,6 +23,6 @@ ReactDOM.render(
                 </Switch>
             </App>
         </Provider>
-    </Router>,
+    </BrowserRouter>,
     rootElement
 );

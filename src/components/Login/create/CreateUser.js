@@ -1,37 +1,61 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {addFirstName, addLastName, addPass, createUser, addEmail, addConfirmPass} from "../../../actions/login";
+import {resetError} from "../../../actions/errors";
 import '../Login.scss'
 
 class CreateUser extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            errors: {
+                email: false,
+                pass: false,
+                confirmPass: false
+            }
+        }
     }
+    submitForm = () => {
+        if (!this.state.errors.email && !this.state.errors.pass && !this.state.errors.confirmPass) {
+            this.props.createUser();
+        }
+    };
 
-    submitForm = (ev) => {
+    validateData = (ev) => {
         ev.preventDefault();
-        this.props.createUser();
+        this.setState({
+            errors: {
+                email: this.props.email.length === 0,
+                pass: this.props.email.length === 0,
+                confirmPass: this.props.pass === this.props.confirmPass,
+            }
+        }, () => this.submitForm())
     };
 
     setFirstName = (value) => {
+        this.resetErrors();
         this.props.addFirstName(value);
     };
 
     setLastName = (value) => {
+        this.resetErrors();
         this.props.addLastName(value);
     };
 
     setPass = (value) => {
+        this.resetErrors();
         this.props.addPass(value);
     };
 
     setEmail = (value) => {
+        this.resetErrors();
         this.props.addEmail(value);
     };
 
     setConfirmPass = (value) => {
+        this.resetErrors();
         this.props.addConfirmPass(value);
     };
 
@@ -45,16 +69,27 @@ class CreateUser extends Component {
         this.props.history.push('/home')
     };
 
+    resetErrors = () => {
+        this.setState({
+            errors: {
+                email: false,
+                pass: false
+            }
+        })
+    };
+
     render() {
         const {email, pass, firstName, lastName, confirmPass} = this.props;
-        const {setFirstName, setLastName, setPass, submitForm, setConfirmPass, setEmail} = this;
+        const {errors} = this.state;
+        const {setFirstName, setLastName, setPass, validateData, setConfirmPass, setEmail} = this;
         return (
             <div className="login">
-                <form className="login-form" onSubmit={(ev) => submitForm(ev)}>
+                <form className="login-form" onSubmit={(ev) => validateData(ev)}>
                     <input type="text"
                            value={email}
                            placeholder="enter email"
                            onChange={(ev) => setEmail(ev.target.value)}/>
+                    {errors.email ? <span>Please, enter email</span> : null}
                     <input type="text"
                            value={firstName}
                            placeholder="enter first name"
@@ -67,10 +102,12 @@ class CreateUser extends Component {
                            value={pass}
                            placeholder="enter password"
                            onChange={(ev) => setPass(ev.target.value)}/>
+                    {errors.pass ? <span>Please, enter pass</span> : null}
                     <input type="password"
                            value={confirmPass}
                            placeholder="confirm password"
                            onChange={(ev) => setConfirmPass(ev.target.value)}/>
+                    {errors.confirmPass ? <span>Password and confirm password should be the same</span> : null}
                     <input type="submit" value="submit"/>
                 </form>
             </div>
@@ -79,10 +116,13 @@ class CreateUser extends Component {
     }
 }
 
-// Login.propTypes = {
-//     email: PropTypes.string.isRequired,
-//     pass: PropTypes.string.isRequired,
-// };
+CreateUser.propTypes = {
+    email: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    pass: PropTypes.string.isRequired,
+    confirmPass: PropTypes.string.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -103,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         createUser: () => {
             dispatch(createUser())
-        },
+        }
     }
 };
 
