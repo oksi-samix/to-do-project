@@ -1,8 +1,21 @@
-import React  from 'react';
+import React from 'react';
 import {addName, addPass, submitForm} from "../../actions/login";
 import connect from "react-redux/es/connect/connect";
 
-const Home = () => (<div>Hello Home</div>);
+import Dashboard from '../dashboard';
+import ToDoComponent from '../todoComponent';
+
+const Home = (props) => {
+    return(<div>
+        <Dashboard
+            user={props.user}
+            products={50}
+            url='linkUrl'
+            tasks={{total: 50, published: 3}}
+        />
+        <ToDoComponent />
+    </div>)}
+;
 
 
 const mapDispatchToProps = (dispatch) => {

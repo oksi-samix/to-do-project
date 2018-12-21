@@ -29,7 +29,7 @@ class CreateUser extends Component {
             errors: {
                 email: this.props.email.length === 0,
                 pass: this.props.email.length === 0,
-                confirmPass: this.props.pass === this.props.confirmPass,
+                confirmPass: this.props.pass !== this.props.confirmPass,
             }
         }, () => this.submitForm())
     };
@@ -57,16 +57,6 @@ class CreateUser extends Component {
     setConfirmPass = (value) => {
         this.resetErrors();
         this.props.addConfirmPass(value);
-    };
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.username) {
-            this.navigateToHomePage()
-        }
-    }
-
-    navigateToHomePage = () => {
-        this.props.history.push('/home')
     };
 
     resetErrors = () => {
