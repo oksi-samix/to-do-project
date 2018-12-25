@@ -24,7 +24,6 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
-    "file-loader": "2.0.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
@@ -51,7 +50,6 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
-    "url-loader": "1.1.1",
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
     "webpack-manifest-plugin": "2.0.4",
@@ -72,9 +70,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "file-loader": "^2.0.0",
     "install": "^0.12.2",
     "node-sass": "^4.10.0",
-    "npm": "^6.4.1"
+    "npm": "^6.4.1",
+    "url-loader": "^1.1.1"
   },
   "jest": {
     "collectCoverageFrom": [
