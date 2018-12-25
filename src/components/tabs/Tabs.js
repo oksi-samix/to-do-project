@@ -1,22 +1,32 @@
 import React, {Component} from 'react';
+import {TabNav} from "./TabNav";
+import {Tab} from "./Tab";
 import './tabs.scss';
 
 export class Tabs extends Component {
-    state={
+    state = {
         selectedIndex: 0
     };
 
+    selectTab = (index) => {
+        this.setState({selectedIndex: index})
+    };
+
     render() {
+        const {children} = this.props;
+        const {selectedIndex} = this.state;
+        const tabs = children.filter(child => child.type === Tab);
+        const titles = tabs.map(tab => tab.props.title);
+
         return (
             <div className="tabs">
-                <nav className="nav-tab">
-                    <ul>
-                        {this.props.tabs.map((tab, index) => (<li key={index}><a href="#">{tab.titile}</a></li>))}
-                    </ul>
-
-                </nav>
+                <TabNav
+                    tabs={titles}
+                    selectedIndex={this.state.selectedIndex}
+                    selectTab={this.selectTab}
+                />
                 <section>
-                    {this.props.tabs[this.state.selectedIndex].content}
+                    {tabs[selectedIndex].props.children}
                 </section>
             </div>
         );
