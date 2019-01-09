@@ -4,23 +4,27 @@ import './todo.css';
 
 let initialList = [];
 class ToDoComponent extends Component {
-    state = {list: null, searchVal: ''};
-
-
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(data => data.json())
-            .then((data) => {
-                if (data.error) {
-                    throw data.error;
-                }
-                data.forEach(item => {
-                    item.hidden = true
-                });
-                initialList = data;
-                this.setState({list: data})
-            })
+    constructor(props){
+        super(props);
+        this.state = {list: props.list || null, searchVal: ''};
     }
+
+
+
+    // componentDidMount() {
+    //     fetch('https://jsonplaceholder.typicode.com/todos')
+    //         .then(data => data.json())
+    //         .then((data) => {
+    //             if (data.error) {
+    //                 throw data.error;
+    //             }
+    //             data.forEach(item => {
+    //                 item.hidden = true
+    //             });
+    //             initialList = data;
+    //             this.setState({list: data})
+    //         })
+    // }
 
     handleClick = (index) => {
         const arr = this.state.list;
@@ -44,21 +48,21 @@ class ToDoComponent extends Component {
         const {list, searchVal} = this.state;
         return (
             <div>
-                <input
-                    type="text"
-                    value={searchVal}
-                    placeholder="Search"
-                    onChange={this.handleSearch}
-                />
+                {/*<input*/}
+                    {/*type="text"*/}
+                    {/*value={searchVal}*/}
+                    {/*placeholder="Search"*/}
+                    {/*onChange={this.handleSearch}*/}
+                {/*/>*/}
                 <ul className="list">
                     {list && list.map((item, index) => {
                         return <ol
-                            className={item.completed ? "completed" : null}
+                            className={item.done ? "completed" : null}
                             key={item.id}
                             onClick={() => this.handleClick(index)}
                         >
                             {index + 1} {item.title}
-                            {!item.hidden ?
+                            {!item.done ?
                                 <>
                                     <button>delete</button>
                                     <button>done</button>
