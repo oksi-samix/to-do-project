@@ -7,22 +7,23 @@ import store from "./store/store";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import App from "./App";
-import Login from "./components/Login";
+import Login from "./components/login";
 import Home from "./components/home";
 
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+        <BrowserRouter>
             <App>
                 <Switch>
-                    <Route path="/home" component={Home}/>
+                    <Route exact path="/home" component={Home}/>
                     <Route path="/" component={Login}/>
-                    <Route path="/login" component={Login}/>
+                    <Route exact path="/login" component={Login}/>
                 </Switch>
             </App>
-        </Provider>
-    </BrowserRouter>,
+        </BrowserRouter>
+    </Provider>
+    ,
     rootElement
 );

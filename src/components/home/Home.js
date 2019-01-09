@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {addName, addPass, submitForm} from "../../actions/login";
 import connect from "react-redux/es/connect/connect";
+import {getShopInfo} from "../../services";
 
 import Dashboard from '../dashboard';
 import ToDoComponent from '../todoComponent';
+import Product from '../product';
 import {Tabs, Tab} from '../tabs';
 
+class Home extends Component {
 
-const Home = (props) => {
+    render() {
         return (<div>
             {/*<Dashboard*/}
-                {/*user={props.user}*/}
-                {/*products={50}*/}
-                {/*url='linkUrl'*/}
-                {/*tasks={{total: 50, published: 3}}*/}
+            {/*user={props.user}*/}
+            {/*products={50}*/}
+            {/*url='linkUrl'*/}
+            {/*tasks={{total: 50, published: 3}}*/}
             {/*/>*/}
             {/*<ToDoComponent/>*/}
             <Tabs>
@@ -29,8 +32,12 @@ const Home = (props) => {
                 </Tab>
             </Tabs>
 
+            <Product/>
+
         </div>)
     }
+
+}
 ;
 
 

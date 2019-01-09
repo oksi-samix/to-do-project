@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { Redirect } from 'react-router';
 
 import SignIn  from './signIn';
 import CreateUser  from './create';
@@ -12,8 +11,7 @@ class Login extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if( prevProps.username !== this.props.username){
-            console.log('here');
-            return  <Redirect to='/home' />;
+            this.props.history.push('/home')
         }
     }
 
