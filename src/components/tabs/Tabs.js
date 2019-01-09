@@ -4,12 +4,17 @@ import {Tab} from "./Tab";
 import './tabs.scss';
 
 export class Tabs extends Component {
-    state = {
-        selectedIndex: 0
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            selectedIndex: parseInt(props.selectedIndex) || 0
+        };
+    }
+
 
     selectTab = (index) => {
         this.setState({selectedIndex: index})
+        this.props.currentTab(index);
     };
 
     render() {

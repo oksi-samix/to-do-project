@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import connect from "react-redux/es/connect/connect";
-
 import CustomeInput from '../customeInput';
-import ToDoComponent from '../todoComponent';
-import {Tabs, Tab} from '../tabs';
-
+import './product.scss'
 
 class Product extends Component {
     state = {
@@ -29,7 +25,7 @@ class Product extends Component {
     render() {
         const {data} = this.state;
         return (
-            <div>
+            <div className="product">
                 <h2>TITLE :
                     <CustomeInput
                         value={data.title}
@@ -57,18 +53,4 @@ class Product extends Component {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // addName: (email) => {dispatch(addName(email))},
-        // addPass: (pass) => {dispatch(addPass(pass))},
-        // submitForm: (email, password) => {dispatch(submitForm(email, password))},
-    }
-};
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user.user
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default Product;

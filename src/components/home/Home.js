@@ -7,11 +7,25 @@ import Dashboard from '../dashboard';
 import ToDoComponent from '../todoComponent';
 import Product from '../product';
 import {Tabs, Tab} from '../tabs';
+import {data} from './task'
+
+
+const week = ['пн', 'вт', 'ср', 'чт', 'пт', 'cб', 'вс'];
+const currentDay = new Date().getDay();
 
 class Home extends Component {
+    state = {currentTab: currentDay - 1};
+
+    setCurrentTab = (index) => {
+        this.setState({
+            currentTab: index
+        })
+    };
 
     render() {
+        const {currentTab} = this.state;
         return (<div>
+            {currentTab}
             {/*<Dashboard*/}
             {/*user={props.user}*/}
             {/*products={50}*/}
@@ -19,17 +33,12 @@ class Home extends Component {
             {/*tasks={{total: 50, published: 3}}*/}
             {/*/>*/}
             {/*<ToDoComponent/>*/}
-            <Tabs>
-                <Tab title='Tab 1'>
-                    <h3>Tab header 1</h3>
-                    <p>Some content is here</p>
-                </Tab>
-
-                <Tab title='Tab 2'>
-                    <h3>Tab header 2</h3>
-                    <p>Some content is here</p>
-                    <time>{new Date().toLocaleDateString()}</time>
-                </Tab>
+            <Tabs selectedIndex={currentDay - 1} currentTab={this.setCurrentTab}>
+                {week.map((item, index) =>
+                    <Tab title={item} key={item}>
+                        <ToDoComponent list={data[currentTab]} key={currentTab}/>
+                    </Tab>
+                )}
             </Tabs>
 
             <Product/>
